@@ -1,0 +1,46 @@
+teste_1.1.PTRI.1.1_123.231
+
+IP - WAN [1.1.PTRI.1.1] teste
+
+DESIGNAÇÃO: 1.1.PTRI.1.1
+BLOCO IP: 1.1.1.1/1
+IP: 1.1.1.3
+GATEWAY: 1.1.1.2
+MÁSCARA: 255.0.0.0
+VLAN: 23
+BANDA: 1 Mbps
+
+IP DE GERENCIA: 1.1.1.1
+
+###### RNG
+vlan 23
+name 1.1.PTRI.1.1
+description 1.1.PTRI.1.1
+quit
+
+interface Vlanif 23
+description 1.1.PTRI.1.1
+mpls l2vc 1.1.1.1 23
+mpls l2vpn flow-label both
+
+###### CORE-RNG
+config 
+mpls l2vpn 
+vpws-group 1
+vpn 1.1.PTRI.1.1
+neighbor 1.1.1.1
+pw-type vlan 23
+pw-load-balance
+flow-label both
+pw-id 23
+pw-mtu 1500
+access-interface lag-7
+dot1q 23
+
+###### JUNIPER
+set interfaces ae7 unit 23 description "[1.1.PTRI.1.1]teste"
+set interfaces ae7 unit 23 vlan-id 23
+set interfaces ae7 unit 23 family inet rpf-check
+set interfaces ae7 unit 23 family inet address 1.1.1.1/1
+set routing-instances INTERNET interface ae7.23
+

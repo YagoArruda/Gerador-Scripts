@@ -1,0 +1,25 @@
+hostname CTL_1.1.PTRI.1.1
+username admin privilege 15 password unencrypted WQM$9!#%
+vlan 2023
+name NMS_PTRI
+exit
+vlan 1
+name 1.1.PTRI.1.1
+exit
+ip route 0.0.0.0 0.0.0.0 10.10.25.254 
+snmp-server community v2c C3ntury:T3l3c0m RO
+interface GigabitEthernet 1/1
+no shut
+description 1-1-1-PTRI-1-1
+switchport access vlan 1
+no spanning-tree
+exit
+interface GigabitEthernet 1/5
+no shut
+description 1
+switchport trunk allowed vlan 2023, 1
+switchport mode trunk
+exit
+interface vlan 1.1.PTRI.1.1
+ip address 1.1.1.1 255.255.252.0
+exit
