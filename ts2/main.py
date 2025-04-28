@@ -5,13 +5,11 @@ import mTextos
 import mCircuito
 import m2301
 import mfunctions
+import mDrawio
 
 os.system('cls')
 
-ipteste = input("ipteste: ")
-mfunctions.validarIp(ipteste)
-
-designacao = input("Designação do cliente: ")
+designacao = mfunctions.validarDesignacao()
 nome = input("Nome do cliente: ")
 protocolo = mfunctions.validarProtocolo()
     
@@ -33,6 +31,6 @@ mCircuito.gerarRNG(vlan,designacao)
 mCircuito.gerarCoreRNG(vlan, designacao)
 mCircuito.gerarJuniper(vlan,"["+ designacao + "]" + nome,bloco_ip)
 m2301.gerar(nome, designacao, vlan, bloco_ip, ip_gerencia)
+mDrawio.gerar(nome,designacao,protocolo,bloco_ip,vlan,banda,ip_gerencia)
 
 subprocess.Popen(["notepad.exe", "arquivos/receivers/config.txt"])
-    

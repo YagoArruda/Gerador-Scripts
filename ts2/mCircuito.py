@@ -1,11 +1,7 @@
 import mfunctions
 
 def gerarRNG(_vlan,_designacao):
-    ip_alvo = input("Ip do RNG-CORE: ")
-    
-    while(mfunctions.validarIp(ip_alvo) == False):
-        print(f"Exemplo de ip: 192.168.10.7")
-        ip_alvo = input("Ip do RNG-CORE: ")
+    ip_alvo = mfunctions.validarIp("Ip do RNG-CORE")
     
     temp = f"""###### RNG
 vlan {_vlan}
@@ -24,12 +20,8 @@ mpls l2vpn flow-label both
         arquivo.write(temp)
 
 def gerarCoreRNG(_vlan,_designacao):
-    ip_alvo = input("Ip do RNG: ")
+    ip_alvo = mfunctions.validarIp("Ip do RNG")
     equipamento_alvo = input("Nome do RNG: ")
-    
-    while(mfunctions.validarIp(ip_alvo) == False):
-        print(f"Exemplo de ip: 192.168.10.7")
-        ip_alvo = input("Ip do RNG: ")
     
     temp = f"""###### CORE-RNG
 config 
@@ -59,6 +51,7 @@ set interfaces {_modo} unit {_vlan} vlan-id {_vlan}
 set interfaces {_modo} unit {_vlan} family inet rpf-check
 set interfaces {_modo} unit {_vlan} family inet address {_bloco_ip}
 set routing-instances INTERNET interface {_modo}.{_vlan}
+
 """
 
     with open("arquivos/receivers/config.txt", "a") as arquivo:

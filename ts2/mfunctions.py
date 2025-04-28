@@ -4,8 +4,9 @@ import re
        
 def validarBanda():
     banda = input("Banda do cliente (sem Mbps): ")
+    padraoBanda = re.compile(r'^\d{1,6}$')
     
-    while(pode_ser_convertido_em_int(banda) and banda == ""):
+    while(padraoBanda.match(banda) == False):
         print(f"Exemplo de banda: 10")
         banda = input("Banda do cliente (sem Mbps): ")
         
@@ -13,40 +14,54 @@ def validarBanda():
 
 def validarBlocoIp():
     bloco_ip = input("Bloco ip do cliente: ")
+    padraoIp = re.compile(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/\d{1,2}$')
     
-    while(validarBlocoIp_Estrutura(bloco_ip) == False):
+    while(padraoIp.match(bloco_ip) == False):
         print(f"Exemplo de bloco ip: 192.168.10.7/31")
         bloco_ip = input("Bloco ip do cliente: ")
     return bloco_ip
 
 def validarProtocolo():
     protocolo = input("Protocolo do cliente: ")
-    while(protocolo.count('.') != 1):
+    padraoProtocolo = re.compile(r'^\d{4}\.\d{3,6}$')
+    
+    while(padraoProtocolo.match(protocolo) is None):
         print(f"Exemplo de protocolo: 2501.0000")
         protocolo = input("Protocolo do cliente: ")
     return protocolo
 
-def validarIpGerencia(banda):
-    ip_gerencia = ""
-    
-    if(int(banda) > 300):
-        ip_gerencia = input("Ip de gerencia do cliente: ")
-        
-    return ip_gerencia
-
-def validarIp(ip):
+def validarIp(texto):   
+    ip = input(f"{texto}:")
     padraoIp = re.compile(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$')
     
-    if padraoIp.match(ip):
-        return True
-    return False
+    while(padraoIp.match(ip) is None):
+        print(f"Exemplo de ip de gerencia: 192.168.10.7")
+        ip = input(f"{texto}:")
+    return ip
 
-def validarBlocoIp_Estrutura(ip):
-    padraoIp = re.compile(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/\d{1,2}$')
+def validarIpGerencia(banda):
+    ip = ""
+    if int(banda) > 300:    
+        ip = input("Ip de gerencia do cliente: ")
+        padraoIp = re.compile(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$')
     
-    if padraoIp.match(ip):
-        return True
-    return False
+        while(padraoIp.match(ip) == False):
+            print(f"Exemplo de ip de gerencia: 192.168.10.7")
+            ip = input("Ip de gerencia do cliente: ")
+    return ip
+
+def validarDesignacao():
+    designacao = input("Designacao do cliente: ")
+    
+    padraoDesignacao = re.compile(r'^\d\.[A-Z0-9]{3}\.[A-Z]{4}\.\d{0,1}\.\d{4,5}\.\d$')
+
+
+
+    
+    while(padraoDesignacao.match(designacao) is None):
+        print(f"Exemplo de designacao: 1.XX1.XXXX.1.11111.1")
+        designacao = input("Designacao do cliente: ")
+    return designacao
 
 def calcular_mascara(bloco_ip):
     dados_ip = bloco_ip.split("/")

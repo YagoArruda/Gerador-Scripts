@@ -20,5 +20,5 @@ BANDA: {banda} Mbps
 
 def ipgerencia(ip_gerencia):
     if(ip_gerencia != ""):
-        return "IP DE GERENCIA: {ip_gerencia}"
+        return f"IP DE GERENCIA: {ip_gerencia}"
     return ""
