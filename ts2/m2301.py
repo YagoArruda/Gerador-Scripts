@@ -1,15 +1,17 @@
 arquivo_estacoes = 'arquivos/a_lsm/estacoes.txt'
 
 def gerar(nome, designacao, vlan, bloco_ip, ip_gerencia):
+    if ip_gerencia != "":
+        print(f"")
+        print(f"####### 2301")
+        _dadosNMS = dadosNMS(validarNMS(designacao)).split(",")
+        nms = _dadosNMS[0]
+        vlan_gerencia = _dadosNMS[1]
+        default_gateway = _dadosNMS[2]
     
-    _dadosNMS = dadosNMS(validarNMS(designacao)).split(",")
-    nms = _dadosNMS[0]
-    vlan_gerencia = _dadosNMS[1]
-    default_gateway = _dadosNMS[2]
+        descricao_porta = input("Descrição da porta do 2301: ")
     
-    descricao_porta = input("Descrição da porta do 2301: ")
-    
-    temp = f"""###### 2301
+        temp = f"""###### 2301
 hostname CTL_{designacao}
 username admin privilege 15 password unencrypted WQM$9!#%
 vlan {vlan_gerencia}
@@ -38,8 +40,8 @@ exit
 
 """
 
-    with open("arquivos/receivers/config.txt", "a") as arquivo:
-        arquivo.write(temp)
+        with open("arquivos/receivers/config.txt", "a") as arquivo:
+            arquivo.write(temp)
 
 def validarNMS(designacao):
     dados_nms = designacao.split(".")

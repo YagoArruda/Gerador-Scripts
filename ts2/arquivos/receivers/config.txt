@@ -1,33 +1,33 @@
 |-------------------------------------------------------------------|
-industrias teste_1.AC2.PTRI.1.1234.5_2501.2433
+1_1.TE1.PTRI.1.11111.1_1111.1111
 
-IP - WAN [1.AC2.PTRI.1.1234.5] industrias teste
+IP - WAN [1.TE1.PTRI.1.11111.1] 1
 
-DESIGNAÇÃO: 1.AC2.PTRI.1.1234.5
-BLOCO IP: 192.168.90.2/31
-IP: 192.168.90.3
-GATEWAY: 192.168.90.2
-MÁSCARA: 255.255.255.254
+DESIGNAÇÃO: 1.TE1.PTRI.1.11111.1
+BLOCO IP: 1.1.1.1/1
+IP: 1.1.1.3
+GATEWAY: 1.1.1.2
+MÁSCARA: 255.0.0.0
 VLAN: 12
-BANDA: 900 Mbps
+BANDA: 1 Mbps
 
-IP DE GERENCIA: 1.1.1.1
+
 ###### RNG
 vlan 12
-name 1.AC2.PTRI.1.1234.5
-description 1.AC2.PTRI.1.1234.5
+name 1.TE1.PTRI.1.11111.1
+description 1.TE1.PTRI.1.11111.1
 quit
 
 interface Vlanif 12
-description 1.AC2.PTRI.1.1234.5
+description 1.TE1.PTRI.1.11111.1
 mpls l2vc 1.1.1.1 12
 mpls l2vpn flow-label both
 
 ###### CORE-RNG
 config 
 mpls l2vpn 
-vpws-group 1
-vpn 1.AC2.PTRI.1.1234.5
+vpws-group CORE.1
+vpn 1.TE1.PTRI.1.11111.1
 neighbor 1.1.1.1
 pw-type vlan 12
 pw-load-balance
@@ -38,37 +38,9 @@ access-interface lag-7
 dot1q 12
 
 ###### JUNIPER
-set interfaces ae7 unit 12 description "[1.AC2.PTRI.1.1234.5]industrias teste"
-set interfaces ae7 unit 12 vlan-id 12
-set interfaces ae7 unit 12 family inet rpf-check
-set interfaces ae7 unit 12 family inet address 192.168.90.2/31
-set routing-instances INTERNET interface ae7.12
-
-###### 2301
-hostname CTL_1.AC2.PTRI.1.1234.5
-username admin privilege 15 password unencrypted WQM$9!#%
-vlan 2023
-name NMS_PTRI
-exit
-vlan 12
-name 1.AC2.PTRI.1.1234.5
-exit
-ip route 0.0.0.0 0.0.0.0 10.10.25.254
- 
-snmp-server community v2c C3ntury:T3l3c0m RO
-interface GigabitEthernet 1/1
-no shut
-description industrias-teste-1-AC2-PTRI-1-1234-5
-switchport access vlan 12
-no spanning-tree
-exit
-interface GigabitEthernet 1/5
-no shut
-description 2345
-switchport trunk allowed vlan 2023, 12
-switchport mode trunk
-exit
-interface vlan 2023
-ip address 1.1.1.1 255.255.252.0
-exit
+set interfaces AE7 unit 12 description "[1.TE1.PTRI.1.11111.1]1"
+set interfaces AE7 unit 12 vlan-id 12
+set interfaces AE7 unit 12 family inet rpf-check
+set interfaces AE7 unit 12 family inet address 1.1.1.1/1
+set routing-instances INTERNET interface AE7.12
 

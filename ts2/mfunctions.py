@@ -48,6 +48,11 @@ def validarIpGerencia(banda):
         while(padraoIp.match(ip) == False):
             print(f"Exemplo de ip de gerencia: 192.168.10.7")
             ip = input("Ip de gerencia do cliente: ")
+    else:
+        op = input("Selecionar Ip de gerencia mesmo com banda abaixo de 300?[y/n]: ")
+        if op == "y" or op == "Y":
+            return validarIpGerencia(301)
+        
     return ip
 
 def validarDesignacao():

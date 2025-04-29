@@ -1,6 +1,8 @@
 import mfunctions
 
 def gerarRNG(_vlan,_designacao):
+    print(f"")
+    print(f"####### RNG")
     ip_alvo = mfunctions.validarIp("Ip do RNG-CORE")
     
     temp = f"""###### RNG
@@ -20,6 +22,8 @@ mpls l2vpn flow-label both
         arquivo.write(temp)
 
 def gerarCoreRNG(_vlan,_designacao):
+    print(f"")
+    print(f"####### RNG-CORE")
     ip_alvo = mfunctions.validarIp("Ip do RNG")
     equipamento_alvo = input("Nome do RNG: ")
     
@@ -43,6 +47,8 @@ dot1q {_vlan}
         arquivo.write(temp)
     
 def gerarJuniper(_vlan,_description,_bloco_ip):
+    print(f"")
+    print(f"####### JUNIPER")
     _modo = input("Digite o ae7 ou et-0/0/0: ")
     
     temp = f"""###### JUNIPER

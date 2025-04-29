@@ -12,8 +12,8 @@ GATEWAY: {gateway}
 MÁSCARA: {mascara}
 VLAN: {vlan}
 BANDA: {banda} Mbps
-
 {ipgerencia(ip_gerencia)}
+
 """
     with open("arquivos/receivers/config.txt", "w") as arquivo:
         arquivo.write(saida)
