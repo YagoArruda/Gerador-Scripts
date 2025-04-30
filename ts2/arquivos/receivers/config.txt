@@ -1,46 +1,21 @@
 |-------------------------------------------------------------------|
-1_1.TE1.PTRI.1.11111.1_1111.1111
+Industrias Teste_1.TE1.PTRI.1.12345.1_2504.3000
 
-IP - WAN [1.TE1.PTRI.1.11111.1] 1
+IP - WAN [1.TE1.PTRI.1.12345.1] Industrias Teste
 
-DESIGNAÇÃO: 1.TE1.PTRI.1.11111.1
-BLOCO IP: 1.1.1.1/1
-IP: 1.1.1.3
-GATEWAY: 1.1.1.2
-MÁSCARA: 255.0.0.0
-VLAN: 12
-BANDA: 1 Mbps
+DESIGNAÇÃO: 1.TE1.PTRI.1.12345.1
+BLOCO IP: 192.168.10.7/31
+IP: 192.168.10.8
+GATEWAY: 192.168.10.7
+MÁSCARA: 255.255.255.254
+VLAN: 2390
+BANDA: 200 Mbps
 
-
-###### RNG
-vlan 12
-name 1.TE1.PTRI.1.11111.1
-description 1.TE1.PTRI.1.11111.1
-quit
-
-interface Vlanif 12
-description 1.TE1.PTRI.1.11111.1
-mpls l2vc 1.1.1.1 12
-mpls l2vpn flow-label both
-
-###### CORE-RNG
-config 
-mpls l2vpn 
-vpws-group CORE.1
-vpn 1.TE1.PTRI.1.11111.1
-neighbor 1.1.1.1
-pw-type vlan 12
-pw-load-balance
-flow-label both
-pw-id 12
-pw-mtu 1500
-access-interface lag-7
-dot1q 12
-
-###### JUNIPER
-set interfaces AE7 unit 12 description "[1.TE1.PTRI.1.11111.1]1"
-set interfaces AE7 unit 12 vlan-id 12
-set interfaces AE7 unit 12 family inet rpf-check
-set interfaces AE7 unit 12 family inet address 1.1.1.1/1
-set routing-instances INTERNET interface AE7.12
+###### Tecnico - MK
+200.169.0.6 | ae7.2390
+        
+Corporate_[60731.47732 - Alterar]_PTRI
+GPON_HUAWEI_10.10.1.250
+RATE-LIMIT_10.10.1.250
+SINAL-ATIVACAO_
 

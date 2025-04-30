@@ -130,6 +130,10 @@ def gerar(nome,designacao,protocolo,bloco_ip,vlan,banda,ip_gerencia):
     with open(f"arquivos/receivers/topologias/{formatarTexto(nome)}_{designacao}_{protocolo}.drawio", "a") as arquivo:
         arquivo.write(temp)
 
+def gerarCondicional(nome,designacao,protocolo,bloco_ip,vlan,banda,ip_gerencia):
+    if(mfunctions.validarProsseguir("Gerar Topologia?") == True):
+        gerar(nome,designacao,protocolo,bloco_ip,vlan,banda,ip_gerencia)
+
 def formatarTexto(entrada):
     entrada = entrada.replace(".","_")
     entrada = entrada.replace("/","_")

@@ -58,7 +58,7 @@ def validarIpGerencia(banda):
 def validarDesignacao():
     designacao = input("Designacao do cliente: ")
     
-    padraoDesignacao = re.compile(r'^\d\.[A-Z0-9]{3}\.[A-Z]{4}\.\d{0,1}\.\d{4,5}\.\d$')
+    padraoDesignacao = re.compile(r'^\d\.[A-Z0-9]{3}\.[A-Z]{4}\.\d{0,2}\.\d{4,5}\.\d$')
 
 
 
@@ -67,6 +67,12 @@ def validarDesignacao():
         print(f"Exemplo de designacao: 1.XX1.XXXX.1.11111.1")
         designacao = input("Designacao do cliente: ")
     return designacao
+
+def validarProsseguir(texto):
+    op = input(f"{texto}[y/n]: ")
+    if(op == "y" or op == "Y"):
+        return True
+    return False
 
 def calcular_mascara(bloco_ip):
     dados_ip = bloco_ip.split("/")

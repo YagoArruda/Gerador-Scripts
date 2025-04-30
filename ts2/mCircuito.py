@@ -63,3 +63,8 @@ set routing-instances INTERNET interface {_modo}.{_vlan}
     with open("arquivos/receivers/config.txt", "a") as arquivo:
         arquivo.write(temp)
 
+def gerarCircuitoCompletoCondicional(_vlan,_designacao,_description,_bloco_ip):
+    if(mfunctions.validarProsseguir("Gerar Circuito?") == True):
+        gerarRNG(_vlan,_designacao)
+        gerarCoreRNG(_vlan,_designacao)
+        gerarJuniper(_vlan,_description,_bloco_ip)
