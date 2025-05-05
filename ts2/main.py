@@ -9,6 +9,10 @@ import mDrawio
 
 os.system('cls')
 
+print("###############################")
+print("#      GERADOR CIRCUITO       #")
+print("###############################")
+
 designacao = mfunctions.validarDesignacao()
 nome = input("Nome do cliente: ")
 protocolo = mfunctions.validarProtocolo()
@@ -25,9 +29,6 @@ banda = mfunctions.validarBanda()
 ip_gerencia = mfunctions.validarIpGerencia(banda)
 
 mTextos.gerar(nome,designacao,protocolo,bloco_ip,ip,gateway,mascara,vlan,banda,ip_gerencia)
-#mCircuito.gerarRNG(vlan,designacao)
-#mCircuito.gerarCoreRNG(vlan, designacao)
-#mCircuito.gerarJuniper(vlan,"["+ designacao + "]" + nome,bloco_ip)
 mCircuito.gerarCircuitoCompletoCondicional(vlan,designacao,"["+ designacao + "]" + nome,bloco_ip)
 m2301.gerar(nome, designacao, vlan, bloco_ip, ip_gerencia)
 mDrawio.gerarCondicional(nome,designacao,protocolo,bloco_ip,vlan,banda,ip_gerencia)

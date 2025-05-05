@@ -1,21 +1,82 @@
 |-------------------------------------------------------------------|
-Industrias Teste_1.TE1.PTRI.1.12345.1_2504.3000
+Industrias Teste_1.TE1.TEST.1.12345.1_2505.0001
 
-IP - WAN [1.TE1.PTRI.1.12345.1] Industrias Teste
+IP - WAN [1.TE1.TEST.1.12345.1] Industrias Teste
 
-DESIGNAÇÃO: 1.TE1.PTRI.1.12345.1
-BLOCO IP: 192.168.10.7/31
-IP: 192.168.10.8
-GATEWAY: 192.168.10.7
+DESIGNAÇÃO: 1.TE1.TEST.1.12345.1
+BLOCO IP: 1.10.100.10/31
+IP: 1.10.100.11
+GATEWAY: 1.10.100.10
 MÁSCARA: 255.255.255.254
-VLAN: 2390
-BANDA: 200 Mbps
+VLAN: 12
+BANDA: 1000 Mbps
 
-###### Tecnico - MK
-200.169.0.6 | ae7.2390
+IP DE GERENCIA: 1.1.1.1
+            
+            ###### Tecnio - MK
+2.2.2.2 | ae7.12
         
-Corporate_[60731.47732 - Alterar]_PTRI
-GPON_HUAWEI_10.10.1.250
-RATE-LIMIT_10.10.1.250
+PROVIDER_[60731.47732 - Alterar]_TEST
+PTP_EDD_1.1.1.1
+RATE-LIMIT_2.2.2.2
 SINAL-ATIVACAO_
+
+###### RNG
+vlan 12
+name 1.TE1.TEST.1.12345.1
+description 1.TE1.TEST.1.12345.1
+quit
+
+interface Vlanif 12
+description 1.TE1.TEST.1.12345.1
+mpls l2vc 3.3.3.3 12
+mpls l2vpn flow-label both
+
+###### CORE-RNG
+config 
+mpls l2vpn 
+vpws-group RNG-CORE-4
+vpn 1.TE1.TEST.1.12345.1
+neighbor 4.4.4.4
+pw-type vlan 12
+pw-load-balance
+flow-label both
+pw-id 12
+pw-mtu 1500
+access-interface lag-7
+dot1q 12
+
+###### JUNIPER
+set interfaces ae7 unit 12 description "[1.TE1.TEST.1.12345.1]Industrias Teste"
+set interfaces ae7 unit 12 vlan-id 12
+set interfaces ae7 unit 12 family inet rpf-check
+set interfaces ae7 unit 12 family inet address 1.10.100.10/31
+set routing-instances INTERNET interface ae7.12
+
+###### 2301
+hostname CTL_1.TE1.TEST.1.12345.1
+username admin privilege 15 password unencrypted WQM$9!#%
+vlan 0000
+name NMS_Undefined
+exit
+vlan 12
+name 1.TE1.TEST.1.12345.1
+exit
+ip route 0.0.0.0 0.0.0.0 0.0.0.0 
+snmp-server community v2c C3ntury:T3l3c0m RO
+interface GigabitEthernet 1/1
+no shut
+description Industrias-Teste-1-TE1-TEST-1-12345-1
+switchport access vlan 12
+no spanning-tree
+exit
+interface GigabitEthernet 1/5
+no shut
+description Porta ACS Teste
+switchport trunk allowed vlan 0000, 12
+switchport mode trunk
+exit
+interface vlan 0000
+ip address 1.1.1.1 255.255.252.0
+exit
 

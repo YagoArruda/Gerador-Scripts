@@ -45,11 +45,11 @@ RATE-LIMIT_{juniper}
 SINAL-ATIVACAO_
 
 """
-
-    juniper = mfunctions.validarIp("Ip do Juniper")
-    gpon = mfunctions.validarIp("Ip do GPON")
-    servico = input("Tipo de serviço: ")
-    temp = f"""###### Tecnico - MK
+    else:
+        juniper = mfunctions.validarIp("Ip do Juniper")
+        gpon = mfunctions.validarIp("Ip do GPON")
+        servico = input("Tipo de serviço: ")
+        temp = f"""###### Tecnico - MK
 {juniper} | ae7.{vlan}
         
 {servico}_[60731.47732 - Alterar]_{m2301.validarNMS(designacao)}

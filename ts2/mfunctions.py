@@ -23,7 +23,7 @@ def validarBlocoIp():
 
 def validarProtocolo():
     protocolo = input("Protocolo do cliente: ")
-    padraoProtocolo = re.compile(r'^\d{4}\.\d{3,6}$')
+    padraoProtocolo = re.compile(r'^\d{4}\.\d{1,7}$')
     
     while(padraoProtocolo.match(protocolo) is None):
         print(f"Exemplo de protocolo: 2501.0000")
@@ -59,9 +59,6 @@ def validarDesignacao():
     designacao = input("Designacao do cliente: ")
     
     padraoDesignacao = re.compile(r'^\d\.[A-Z0-9]{3}\.[A-Z]{4}\.\d{0,2}\.\d{4,5}\.\d$')
-
-
-
     
     while(padraoDesignacao.match(designacao) is None):
         print(f"Exemplo de designacao: 1.XX1.XXXX.1.11111.1")
