@@ -3,11 +3,22 @@
     <mxGraphModel dx="1418" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
-        <mxCell id="1" parent="0" /><mxCell id="h46SICJPrgyOPjBbUtfY-1" value="" style="sketch=0;points=[[0.015,0.015,0],[0.985,0.015,0],[0.985,0.985,0],[0.015,0.985,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];verticalLabelPosition=bottom;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.rect;prIcon=l2_switch;fillColor=#FAFAFA;strokeColor=#005073;shadow=1;" parent="1" vertex="1">
-          <mxGeometry x="0" y="200" width="50" height="50" as="geometry" />
-        </mxCell><mxCell id="h46SICJPrgyOPjBbUtfY-2" value="" style="sketch=0;points=[[0.015,0.015,0],[0.985,0.015,0],[0.985,0.985,0],[0.015,0.985,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];verticalLabelPosition=bottom;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.rect;prIcon=l2_switch;fillColor=#FAFAFA;strokeColor=#005073;shadow=1;" parent="1" vertex="1">
-          <mxGeometry x="200" y="200" width="50" height="50" as="geometry" />
-        </mxCell></root>
+        <mxCell id="1" parent="0" /><mxCell id="SWITCH-0-porta-b" value="PB" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="60" y="-5" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SWITCH-0" value="" style="sketch=0;points=[[0.015,0.015,0],[0.985,0.015,0],[0.985,0.985,0],[0.015,0.985,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];verticalLabelPosition=bottom;html=1;verticalAlign=top;aspect=fixed;align=center;pointerEvents=1;shape=mxgraph.cisco19.rect;prIcon=l2_switch;fillColor=#FAFAFA;strokeColor=#005073;shadow=1;" parent="1" vertex="1">
+          <mxGeometry x="0" y="0" width="50" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="SWITCH-0-porta-a" value="PA" style="text;html=1;align=right;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="-100" y="-5" width="90" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SWITCH-0-desc-linha1" value="LNG-KH" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-85" y="50" width="220" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SWITCH-0-desc-linha2" value="1.2.3.4" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-85" y="70" width="220" height="30" as="geometry" />
+        </mxCell>
+     </root>
     </mxGraphModel>
   </diagram>
 </mxfile>
