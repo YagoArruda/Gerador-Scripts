@@ -35,8 +35,8 @@ def validarIp(texto):
     padraoIp = re.compile(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$')
     
     while(padraoIp.match(ip) is None):
-        print(f"Exemplo de ip de gerencia: 192.168.10.7")
-        ip = input(f"{texto}:")
+        print(f"Exemplo de ip: 192.168.10.7")
+        ip = input(f"{texto}: ")
     return ip
 
 def validarIpGerencia(banda):

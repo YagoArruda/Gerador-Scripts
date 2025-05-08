@@ -24,7 +24,7 @@ def mainFlow():
     if(opCir == False):
         opUp = mFunctions.validarProsseguir("# Gerar upgrade?")
     if(opUp == False):
-        mTopologiaModular.teste()
+        mTopologiaModular.gerarTopologiaModular()
 
     print("###############################")
     if(opCir == True):
