@@ -21,9 +21,10 @@ def mainFlow():
     print("###############################")
 
     opCir = mFunctions.validarProsseguir("# Gerar circuito?")
+    opUp = ""
     if(opCir == False):
         opUp = mFunctions.validarProsseguir("# Gerar upgrade?")
-    if(opUp == False):
+    if(opUp == opCir == False):
         mTopologiaModular.gerarTopologiaModular()
 
     print("###############################")

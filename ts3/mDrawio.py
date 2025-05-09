@@ -1,5 +1,6 @@
 import mFunctions
 from datetime import date
+import subprocess
 
 def gerar(nome,designacao,protocolo,bloco_ip,vlan,banda,ip_gerencia):
     

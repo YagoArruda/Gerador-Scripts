@@ -2,6 +2,13 @@ import mFunctions
 from datetime import date
 import subprocess
 
+import m2301
+import mDrawio
+import mActions
+import mTopologiaModular
+import mTextos
+import mCircuito
+
 def gerarCircuitoPadrao():
     designacao = mFunctions.validarDesignacao()
     nome = input("Nome do cliente: ")
