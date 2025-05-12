@@ -10,31 +10,28 @@ import mActions
 import mTopologiaModular
 
 def mainFlow():
-    os.system('cls')
-
-    print("###############################")
-    print("#      GERADOR CIRCUITO       #")
-    print("###############################")
-    print("#     Opções Disponíveis      #")
-    print("# 1 - Circuito                #")
-    print("# 2 - Upgrade                 #")
-    print("###############################")
-
-    opCir = mFunctions.validarProsseguir("# Gerar circuito?")
-    opUp = ""
-    if(opCir == False):
-        opUp = mFunctions.validarProsseguir("# Gerar upgrade?")
-    if(opUp == opCir == False):
-        mTopologiaModular.gerarTopologiaModular()
-
-    print("###############################")
-    if(opCir == True):
-        mActions.gerarCircuitoPadrao()
-    if(opUp == True):
-        mActions.gerarUpgradePadrao()
-
-    if(opCir == opUp == False):
-        mainFlow()
-  
-mainFlow()
     
+    tip = ""
+    while (tip != "0"):
+        os.system('cls')
+        tip = input(f"""###############################
+#      GERADOR CIRCUITO       #
+###############################
+#     Opções Disponíveis      #
+# 0 - Sair                    #
+# 1 - Circuito                #
+# 2 - Upgrade                 #
+# 3 - Topologia Modular       #
+###############################
+# Escolhido: """)
+        
+        if(tip == "1"):
+            mActions.gerarCircuitoPadrao()
+        if(tip == "2"):
+            mActions.gerarUpgradePadrao()
+        if(tip == "3"):
+            mTopologiaModular.gerarTopologiaModular()
+    
+    mainFlow()
+  
+mainFlow()  
