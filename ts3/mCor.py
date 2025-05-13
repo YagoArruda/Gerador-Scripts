@@ -33,3 +33,15 @@ def amarelo(texto):
     alt = f"{AMARELO}{texto}{RESET}"
     return alt
     
+def verde(texto):
+    alt = f"{VERDE}{texto}{RESET}"
+    return alt
+    
+def vermelho(texto):
+    alt = f"{VERMELHO}{texto}{RESET}"
+    return alt
+
+def vermelhoBrilhante(texto):
+    alt = f"{VERMELHO_BRILHANTE}{texto}{RESET}"
+    return alt
+    

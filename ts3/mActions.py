@@ -8,14 +8,15 @@ import mActions
 import mTopologiaModular
 import mTextos
 import mCircuito
+import mCor
 
 def gerarCircuitoPadrao():
     designacao = mFunctions.validarDesignacao()
-    nome = input("Nome do cliente: ")
+    nome = input("# Nome do cliente: ")
     protocolo = mFunctions.validarProtocolo()
     
-    print(f"Texto para provisionamento: IP - WAN [{designacao}] {nome}")
-    vlan = input("Vlan do cliente: ")
+    print(f"# Texto para provisionamento: IP - WAN [{designacao}] {nome}")
+    vlan = mFunctions.validarVlan()
     bloco_ip = mFunctions.validarBlocoIp()
     
     ip = mFunctions.calcular_ip(bloco_ip)
@@ -40,8 +41,14 @@ def gerarUpgradePadrao():
     mFunctions.salvarEmArquivo(temp,"arquivos/receivers/upgrade.txt")
     
     opg = mFunctions.validarProsseguir("Limitação no GPON? ")
-    opj = mFunctions.validarProsseguir("Limitação no Juniper? ")
-    opd = mFunctions.validarProsseguir("Limitação no Datacom? ")
+    opj = ""
+    opd = ""
+    
+    if(opg == False):
+        opj = mFunctions.validarProsseguir("Limitação no Juniper? ")
+    if(opj == False):
+        opd = mFunctions.validarProsseguir("Limitação no Datacom? ")
+    
     
     if(opg == True):
         mFunctions.adicionarEmArquivo(textoGPON(),"arquivos/receivers/upgrade.txt")
@@ -57,8 +64,8 @@ def gerarUpgradePadrao():
 def textoDatacom():
     banda = mFunctions.validarBanda()
     bandaUp = int(banda) * 1024
-    print("Exemplo de interface: ten-gigabit-ethernet-1/1/4")
-    interface = input("Interface do datacom: ")
+    print(f"# Exemplo de interface: {mCor.amarelo("ten-gigabit-ethernet-1/1/4")}")
+    interface = input("# Interface do datacom: ")
     
     mFunctions.adicionarEmArquivo(emailUpgrade(banda),"arquivos/receivers/upgrade.txt")
     
@@ -79,10 +86,10 @@ rate-limit output rate {bandaUp} burst 512
 """
 
 def textoJuniper():
-    vlan = input("Vlan do cliente: ")
-    policer = input("Policer do Juniper: ")
-    print("Exemplo de interface: et-0/0/1 ou ae7.000")
-    interface = input("Interface do datacom: ")
+    vlan = mFunctions.validarVlan()
+    policer = input("# Policer do Juniper: ")
+    print(f"Exemplo de interface: {mCor.amarelo("et-0/0/1 ou ae7.000")}")
+    interface = input("# Interface do juniper: ")
     
     banda = mFunctions.validarBanda()
     mFunctions.adicionarEmArquivo(emailUpgrade(banda),"arquivos/receivers/upgrade.txt")
@@ -94,9 +101,9 @@ set interfaces {interface} unit {vlan} family inet policer output {policer}
 """
 
 def textoGPON():
-    servicePort = input("Service Port: ")
-    index = input("Index: ")
-    lineProfile = input("Line Profile: ")
+    servicePort = input("# Service Port: ")
+    index = input("# Index: ")
+    lineProfile = input("# Line Profile: ")
     
     banda = mFunctions.validarBanda()
     mFunctions.adicionarEmArquivo(emailUpgrade(banda),"arquivos/receivers/upgrade.txt")

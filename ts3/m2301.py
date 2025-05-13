@@ -9,7 +9,7 @@ def gerar(nome, designacao, vlan, bloco_ip, ip_gerencia):
         vlan_gerencia = _dadosNMS[1]
         default_gateway = _dadosNMS[2]
     
-        descricao_porta = input("Descrição da porta do 2301: ")
+        descricao_porta = input("# Descrição da porta do 2301: ")
     
         temp = f"""###### 2301
 hostname CTL_{designacao}

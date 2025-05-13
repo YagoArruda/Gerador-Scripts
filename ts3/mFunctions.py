@@ -1,75 +1,85 @@
 import os
 import subprocess
 import re
+import mCor
  
 def validarBanda():
-    banda = input("Banda do cliente (sem Mbps): ")
+    banda = input("# Banda do cliente (sem Mbps): ")
     padraoBanda = re.compile(r'^\d{1,6}$')
     
-    while(padraoBanda.match(banda) == False):
-        print(f"Exemplo de banda: 10")
-        banda = input("Banda do cliente (sem Mbps): ")
+    while(padraoBanda.match(banda) == None):
+        print(f"# Exemplo de banda: {mCor.amarelo("10")}")
+        banda = input("# Banda do cliente (sem Mbps): ")
         
     return banda
 
 def validarBlocoIp():
-    bloco_ip = input("Bloco ip do cliente: ")
+    bloco_ip = input("# Bloco ip do cliente: ")
     padraoIp = re.compile(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/\d{1,2}$')
-    
-    while(padraoIp.match(bloco_ip) == False):
-        print(f"Exemplo de bloco ip: 192.168.10.7/31")
-        bloco_ip = input("Bloco ip do cliente: ")
+    while(padraoIp.match(bloco_ip) == None):
+        print(f"# Exemplo de bloco ip: {mCor.amarelo("192.168.10.7/31")}")
+        bloco_ip = input("# Bloco ip do cliente: ")
     return bloco_ip
 
 def validarProtocolo():
-    protocolo = input("Protocolo do cliente: ")
+    protocolo = input("# Protocolo do cliente: ")
     padraoProtocolo = re.compile(r'^\d{4}\.\d{1,7}$')
     
     while(padraoProtocolo.match(protocolo) is None):
-        print(f"Exemplo de protocolo: 2501.0000")
-        protocolo = input("Protocolo do cliente: ")
+        print(f"# Exemplo de protocolo: {mCor.amarelo("2501.0000")}")
+        protocolo = input("# Protocolo do cliente: ")
     return protocolo
 
 def validarIp(texto):   
-    ip = input(f"{texto}:")
+    ip = input(f"# {texto}: ")
     padraoIp = re.compile(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$')
     
     while(padraoIp.match(ip) is None):
-        print(f"Exemplo de ip: 192.168.10.7")
-        ip = input(f"{texto}: ")
+        print(f"# Exemplo de ip: {mCor.amarelo("192.168.10.7")}")
+        ip = input(f"# {texto}: ")
     return ip
 
 def validarIpGerencia(banda):
     ip = ""
     if int(banda) > 300:    
-        ip = input("Ip de gerencia do cliente: ")
+        ip = input("# Ip de gerencia do cliente: ")
         padraoIp = re.compile(r'^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$')
     
-        while(padraoIp.match(ip) == False):
-            print(f"Exemplo de ip de gerencia: 192.168.10.7")
-            ip = input("Ip de gerencia do cliente: ")
+        while(padraoIp.match(ip) == None):
+            print(f"# Exemplo de ip de gerencia: {mCor.amarelo("192.168.10.7")}")
+            ip = input("# Ip de gerencia do cliente: ")
     else:
-        op = input("Selecionar Ip de gerencia mesmo com banda abaixo de 300?[y/n]: ")
+        op = input(F"# Selecionar Ip de gerencia mesmo com banda abaixo de 300?[{mCor.verde("y")}/{mCor.vermelho("n")}]: ")
         if op == "y" or op == "Y":
             return validarIpGerencia(301)
         
     return ip
 
 def validarDesignacao():
-    designacao = input("Designacao do cliente: ")
+    designacao = input("# Designacao do cliente: ")
     
-    padraoDesignacao = re.compile(r'^\d\.[A-Z0-9]{3}\.[A-Z]{4}\.\d{0,2}\.\d{4,5}\.\d$')
+    padraoDesignacao = re.compile(r'^\d\.[A-Z0-9]{3}\.[A-Z]{4}\.\d{0,2}\.\d{3,5}\.\d$')
     
     while(padraoDesignacao.match(designacao) is None):
-        print(f"Exemplo de designacao: 1.XX1.XXXX.1.11111.1")
-        designacao = input("Designacao do cliente: ")
+        print(f"Exemplo de designacao: {mCor.amarelo("1.XX1.XXXX.1.11111.1")}")
+        designacao = input("# Designacao do cliente: ")
     return designacao
 
 def validarProsseguir(texto):
-    op = input(f"{texto}[y/n]: ")
+    op = input(f"{texto}[{mCor.verde("y")}/{mCor.vermelho("n")}]: ")
     if(op == "y" or op == "Y"):
         return True
     return False
+
+def validarVlan():
+    vlan = input("# Vlan do cliente: ")
+    
+    padraoVlan = re.compile(r'^\d{1,4}\d$')
+    
+    while(padraoVlan.match(vlan) is None):
+        print(f"Exemplo de vlan: {mCor.amarelo("12")}")
+        vlan = input("# Vlan do cliente: ")
+    return vlan
 
 def calcular_mascara(bloco_ip):
     dados_ip = bloco_ip.split("/")

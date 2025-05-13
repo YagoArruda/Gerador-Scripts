@@ -8,9 +8,10 @@ import mFunctions
 import mDrawio
 import mActions
 import mTopologiaModular
+import mLogin
 
 def mainFlow():
-    
+    mLogin.loading()
     tip = ""
     while (tip != "0"):
         os.system('cls')
@@ -31,7 +32,5 @@ def mainFlow():
             mActions.gerarUpgradePadrao()
         if(tip == "3"):
             mTopologiaModular.gerarTopologiaModular()
-    
-    mainFlow()
   
 mainFlow()  

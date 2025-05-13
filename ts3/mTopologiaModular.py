@@ -5,6 +5,8 @@ import mCor
 import m2301
 from datetime import date
 import math
+import time
+
 
 class Equipamento:
     def __init__(self, oid,nome, ip, portaA, portaB, posX, posY):
@@ -147,7 +149,7 @@ def data(oid, equipamentos):
 
 def dados(oid,designacao):
     
-    vlan = input("# Vlan do cliente: ")
+    vlan = mFunctions.validarVlan()
     blocoIp = mFunctions.validarBlocoIp()
     
     ip = mFunctions.calcular_ip(blocoIp)
@@ -173,7 +175,7 @@ def titulo(oid, nome, designacao, protocolo,equipamentoA,equipamentos):
 
 def gerarEquipmento(oid, posX, posY):
     nome = input("# Nome do equipamento: ")
-    ip = mFunctions.validarIp("# Ip do equipamento")
+    ip = mFunctions.validarIp("Ip do equipamento")
     portaA = input("# Porta A: ")
     portaB = input("# Porta B: ")
     
@@ -183,13 +185,13 @@ def escolherEquipamento(equipamentos, texto):
     print("# Equipamentos cadastrados: ")
     op = -1
     for i, equipamento in enumerate(equipamentos):
-        print(f"# {mCor.amarelo(i)} - {equipamento.nome}")
-    while op < 0 or op >= len(equipamentos):
+        print(f"# {mCor.amarelo(i+1)} - {equipamento.nome}")
+    while op < 0 or op > len(equipamentos):
         try:
             op = int(input(f"# {mCor.amarelo("Id")} {texto}: "))
         except ValueError:
             print("# Por favor, insira um número válido.")
-    return equipamentos[op]
+    return equipamentos[op-1]
 
 def equipamentoCentral(equipamentos):
     op = math.floor(len(equipamentos) / 2)
@@ -219,6 +221,8 @@ def gerarIdentificacao(nome ,designacao, protocolo):
 def gerarTopologiaModular():
     
     equipamentos = []
+    setas = 0
+    mplss = 0
     posManager = PosManager(0,0,0,0)
 
     meio = f""""""
@@ -230,14 +234,16 @@ def gerarTopologiaModular():
         tip = input(f"""###############################
 #      GERADOR TOPOLOGIA      #
 ###############################
-#     Opções Disponíveis      #
 #     Equipamentos: {len(equipamentos)}         #
+#     Setas: {setas}                #
+#     MPLS/VSI: {mplss}             #
+#                             #
 # 0 - Gerar Topologia         #
 # 1 - RT                      #
 # 2 - SWITCH                  #
 # 3 - L3 SWITCH               #
 # 4 - SETA                    #
-# 5 - MPLS                    #
+# 5 - MPLS/VSI                #
 ###############################
 # Adicionar: """)
         
@@ -257,12 +263,27 @@ def gerarTopologiaModular():
             posManager.atualizarPosX()
             iid = iid + 1
         if(tip == "4"):
-            meio = meio + seta(f"SETA-{iid}",escolherEquipamento(equipamentos,"do equipamento A"),escolherEquipamento(equipamentos,"do equipamento B"))
-            iid = iid + 1
+            if(len(equipamentos) >1):
+                meio = meio + seta(f"SETA-{iid}",escolherEquipamento(equipamentos,"do equipamento A"),escolherEquipamento(equipamentos,"do equipamento B"))
+                iid = iid + 1
+                setas = setas + 1
+            else:
+                print(f"# {mCor.vermelhoBrilhante("Não")} foi possivel gerar a seta, sem {mCor.amarelo("equipamento")} suficientes inseridos")
+                time.sleep(3)
         if(tip == "5"):
-            premeio = premeio + mpls(f"MPLS-{iid}","MPLS",escolherEquipamento(equipamentos,"do equipamento A"),escolherEquipamento(equipamentos,"do equipamento B"))
-            iid = iid + 1
-            
+            if(len(equipamentos) > 1):
+                tipo = input(f"# Conexão {mCor.amarelo("MPLS")} ou {mCor.amarelo("VSI")}: ")
+                premeio = premeio + mpls(f"MPLS-{iid}",tipo,escolherEquipamento(equipamentos,"do equipamento A"),escolherEquipamento(equipamentos,"do equipamento B"))
+                iid = iid + 1
+                mplss = mplss + 1
+            else:
+                print(f"# {mCor.vermelhoBrilhante("Não")} foi possivel gerar o mpls/vsi, sem {mCor.amarelo("equipamento")} suficientes inseridos")
+                time.sleep(3)
+        if(tip == "0" and len(equipamentos) <= 0):
+            print(f"# {mCor.vermelhoBrilhante("Não")} foi possivel gerar a topologia, sem {mCor.amarelo("equipamento")} inserido, cancelando processo ")
+            tip = "-1"
+            time.sleep(3)
+      
     meio = meio + data(f"DATA-{iid}",equipamentos)
     iid = iid + 1
     

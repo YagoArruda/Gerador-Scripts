@@ -25,7 +25,7 @@ def gerarCoreRNG(_vlan,_designacao):
     print(f"")
     print(f"####### RNG-CORE")
     ip_alvo = mFunctions.validarIp("Ip do RNG")
-    equipamento_alvo = input("Nome do RNG: ")
+    equipamento_alvo = input("# Nome do RNG: ")
     
     temp = f"""###### CORE-RNG
 config 
@@ -49,7 +49,7 @@ dot1q {_vlan}
 def gerarJuniper(_vlan,_description,_bloco_ip):
     print(f"")
     print(f"####### JUNIPER")
-    _modo = input("Digite o ae7 ou et-0/0/0: ")
+    _modo = input("# Digite o ae7 ou et-0/0/0: ")
     
     temp = f"""###### JUNIPER
 set interfaces {_modo} unit {_vlan} description "{_description}"
