@@ -41,6 +41,10 @@ def vermelho(texto):
     alt = f"{VERMELHO}{texto}{RESET}"
     return alt
 
+def azul(texto):
+    alt = f"{AZUL}{texto}{RESET}"
+    return alt
+
 def vermelhoBrilhante(texto):
     alt = f"{VERMELHO_BRILHANTE}{texto}{RESET}"
     return alt

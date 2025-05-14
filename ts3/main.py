@@ -9,6 +9,7 @@ import mDrawio
 import mActions
 import mTopologiaModular
 import mLogin
+import mCor
 
 def mainFlow():
     mLogin.loading()
@@ -19,10 +20,10 @@ def mainFlow():
 #      GERADOR CIRCUITO       #
 ###############################
 #     Opções Disponíveis      #
-# 0 - Sair                    #
-# 1 - Circuito                #
-# 2 - Upgrade                 #
-# 3 - Topologia Modular       #
+# {mCor.vermelho("0")} - Sair                    #
+# {mCor.verde("1")} - Circuito                #
+# {mCor.azul("2")} - Upgrade                 #
+# {mCor.amarelo("3")} - Topologia Modular       #
 ###############################
 # Escolhido: """)
         
@@ -32,5 +33,7 @@ def mainFlow():
             mActions.gerarUpgradePadrao()
         if(tip == "3"):
             mTopologiaModular.gerarTopologiaModular()
+            
+    mLogin.end()
   
-mainFlow()  
+mainFlow()

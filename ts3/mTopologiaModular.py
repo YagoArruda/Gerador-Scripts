@@ -176,6 +176,7 @@ def titulo(oid, nome, designacao, protocolo,equipamentoA,equipamentos):
 def gerarEquipmento(oid, posX, posY):
     nome = input("# Nome do equipamento: ")
     ip = mFunctions.validarIp("Ip do equipamento")
+    print(f"# Adicione {mCor.amarelo("&lt;br&gt;")} para gerar quebra de linha no nome das portas")
     portaA = input("# Porta A: ")
     portaB = input("# Porta B: ")
     

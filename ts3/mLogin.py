@@ -8,7 +8,7 @@ def loading():
     while (carregado < 100):
         os.system('cls')
         print(f"""##################################################
-#           TS - Topology System - 3.4           #
+#        TS - Topology System - 3.5 - 5/25       #
 ##################################################
 #     By: {mCor.amarelo("Yago A")}                                 #
 #                                                #
@@ -17,8 +17,16 @@ def loading():
 # Access for help:                               #
 # {mCor.verde("https://github.com/YagoArruda/Gerador-Scripts")}  #
 ##################################################""")
-        carregado = carregado + 25
+        carregado = carregado + 35
+        if(carregado > 100):
+            carregado = 100
         time.sleep(1)
+
+def end():
+    os.system('cls')
+    print(f"""##################################################
+#        TS - Topology System - 3.5 - 5/25       #
+##################################################""")
     
     
     
